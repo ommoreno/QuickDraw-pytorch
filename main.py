@@ -90,6 +90,8 @@ if __name__ == '__main__':
         net = resnet34(num_classes, pretrain)
     elif args.model == 'convnet':
         net = convnet(num_classes, pretrain)
+    elif args.model == 'resnet18':
+        net = resnet18(num_classes, pretrain)
 
     if args.ngpu > 1:
         net = nn.DataParallel(net)
