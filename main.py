@@ -42,6 +42,8 @@ if __name__ == '__main__':
                         default=1, help='0 or less for CPU.')
     parser.add_argument('--model', '-m', type=str,
                         default='resnet34', help='choose the model.')
+    parser.add_argument('--pretrained', '-p', dest='pretrain', action='store_true', 
+                        default=False, required=False, help='Run with pretrained models.')
 
     # testing
     parser.add_argument('--test_bs', '-tb', type=int,
@@ -85,9 +87,9 @@ if __name__ == '__main__':
 
     net = None
     if args.model == 'resnet34':
-        net = resnet34(num_classes)
+        net = resnet34(num_classes, pretrain)
     elif args.model == 'convnet':
-        net = convnet(num_classes)
+        net = convnet(num_classes, pretrain)
 
     if args.ngpu > 1:
         net = nn.DataParallel(net)
