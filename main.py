@@ -7,9 +7,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from tqdm import tqdm
 
-# model - resnet34
-from Model.nets import resnet34
-from Model.nets import convnet
+
+from Model.nets import *
 
 # dataset
 from DataUtils.load_data import QD_Dataset
@@ -87,11 +86,11 @@ if __name__ == '__main__':
 
     net = None
     if args.model == 'resnet34':
-        net = resnet34(num_classes, pretrain)
+        net = resnet34(num_classes, args.pretrain)
     elif args.model == 'convnet':
-        net = convnet(num_classes, pretrain)
+        net = convnet(num_classes, args.pretrain)
     elif args.model == 'resnet18':
-        net = resnet18(num_classes, pretrain)
+        net = resnet18(num_classes, args.pretrain)
 
     if args.ngpu > 1:
         net = nn.DataParallel(net)
